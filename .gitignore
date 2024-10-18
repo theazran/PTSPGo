@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Dependency directories
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Cache directories
+.cache/
+
+# Build output
+dist/
+build/
+
+# Ignore photo files in the public/photos directory, except for *.jpg
+public/photos/*
+!public/photos/*.jpg
+
+# Specific files
+cat.js
+ma.js
+print.js
+queue_ticket_A010.png
+ticket.png
+tiket.js
+tts.js
+package-lock.json

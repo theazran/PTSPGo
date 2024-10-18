@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Admin Dashboard Template">
+    <meta name="keywords" content="admin,dashboard">
+    <meta name="author" content="stacks">
+    <title>PTSPGo.</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.notifku.my.id/lime/theme/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.notifku.my.id/lime/theme/assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.notifku.my.id/lime/theme/assets/css/lime.min.css" rel="stylesheet">
+    <link href="https://cdn.notifku.my.id/lime/theme/assets/css/custom.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('updateQueue', function (data) {
+            location.reload();
+        });
+        socket.on('newQueue', function (data) {
+            location.reload();
+        });
+    </script>
+
+    <style>
+        body {
+            background-image: url('/logo/kantor.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+
+        .footer {
+            color: #f8f9fa;
+            background: #d33238;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            border-radius: 25px 0px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer .ptsp-go {
+            padding: 10px;
+            position: absolute;
+            top: -50px;
+            right: 0px;
+            padding-right: 30px;
+            padding-left: 40px;
+            border-radius: 20px 0px 0px 0px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #d33238;
+            background-color: #ffffff;
+            z-index: -10;
+
+        }
+
+        .card-purple-blue {
+            background: #d33238;
+            color: #f8f9fa;
+        }
+    </style>
+
+</head>
+
+<body class="error-page err-500">
+    <!-- <div class='loader'>
+        <div class='spinner-grow text-primary' role='status'>
+            <span class='sr-only'>Loading...</span>
+        </div>
+    </div> -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class=" card mt-2 shadow card-purple-blue " style="min-height: 400px; border-radius: 15px;">
+                    <div class="card-body">
+                        <% if (lastCalled) { %>
+                            <h2 class="text-center text-white">NOMOR ANTRIAN</h2>
+                            <hr>
+                            <h1 style="font-size: 99pt;" class=" text-center">
+                                <%= lastCalled.service_queue_number %>
+                            </h1>
+                            <div class="story-list" id="finish-list" style="border: #f8f9fa 4px dashed; ">
+                                <li class="list-group-item">
+                                    <div class="story">
+                                        <a href="#"><img src="<%= lastCalled.photo %>" alt="asran" class="story-image"
+                                                style="object-fit: cover"></a>
+                                        <div class="story-info">
+                                            <a href="#"><span class="story-author">
+                                                    <i class="fa-regular fa-circle-user"></i>
+                                                    <%= lastCalled.name %>
+                                                </span></a>
+                                            <i class="fa-regular text-dark fa-star"></i>
+                                            <span class="badge badge-pill badge-danger">
+                                                <% const serviceNames={ 1: 'UMUM' , 2: 'HUKUM' , 3: 'PIDANA'
+                                                    ,4: 'PERDATA' , 5: 'INFORMASI' }; const
+                                                    serviceName=serviceNames[lastCalled.service_id] || '-' ; %>
+                                                    <%= serviceName %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                            <% } else { %>
+                                <div class="">
+                                    <h2 class="text-center text-white">NOMOR ANTRIAN</h2>
+                                    <hr>
+                                    <h1 style="font-size: 99pt;" class="text-center">
+                                        -
+                                    </h1>
+                                    <div class="story-list" id="finish-list" style="border: #f8f9fa 4px dashed; ">
+                                        <li class="list-group-item">
+                                            <div class="story">
+                                                <a href="#"><img
+                                                        src="https://cdn-icons-png.freepik.com/512/7718/7718888.png"
+                                                        alt="asran" class="story-image" style="object-fit: cover"></a>
+                                                <div class="story-info">
+                                                    <a href="#"><span class="story-author">
+                                                            <i class="fa-regular fa-circle-user"></i>
+                                                            Belum Ada Antrian
+                                                        </span></a>
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <span class="badge badge-pill badge-primary">
+                                                        Belum Ada Antrian
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
+                                <% } %>
+                    </div>
+                </div>
+                </li>
+            </div>
+            <div class="col-md-8">
+                <div class="card mt-2 p-2 shadow">
+                    <iframe width="980" height="400"
+                        src="https://www.youtube.com/embed/DK0_JlOit9E?autoplay=1&controls=0&mute=1" frameborder="0"
+                        allow="autoplay; encrypted-media" loop=1 allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-center mt-4">
+            <% const services=['umum', 'hukum' , 'pidana' , 'perdata' , 'informasi' ]; %>
+                <% services.forEach(function(service) { %>
+                    <div class="col-md-2">
+                        <div class="tiket">
+                            <h3
+                                style="margin-top: 10px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-weight: bolder; color: #ffffff;">
+                                <%= service.charAt(0).toUpperCase() + service.slice(1) %>
+                            </h3>
+                            <div class="card-body">
+                                <% const waitingQueue=queueByService[service] || []; %>
+                                    <% if (waitingQueue.length> 0) { %>
+                                        <H1 class="text-center mt-4 text-white">
+                                            <%= waitingQueue[0].service_queue_number %>
+                                        </H1>
+                                        <span class="badge badge-pill badge-secondary">
+                                            <i class="fa-regular fa-circle-user"></i>
+                                            <%= waitingQueue[0].name %>
+                                        </span>
+                                        <% } else { %>
+                                            <H1 class="text-center mt-4 text-white">-</H1>
+                                            <span class="badge badge-pill text-dark badge-secondary">
+                                                <i class="fa-regular fa-circle-user"></i>
+                                                Tidak ada antrian
+                                            </span>
+                                            <% } %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% }); %>
+                        <div class="col-md-2">
+                            <div class=" tiket">
+                                <h3
+                                    style="margin-top: 10px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-weight: bolder; color: #ffffff;">
+                                    PRIORITAS
+                                </h3>
+                                <div class="card-body ">
+                                    <H1 class="text-center mt-4 text-white">F001</H1>
+                                    <span class="badge badge-pill badge-secondary "><i
+                                            class="fa-regular fa-circle-user"></i>
+                                        Tidak Ada Antrian
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+        <div class="container col-md-4">
+            <img src="/logo/tunggu.png" alt="" srcset="" width="500px">
+        </div>
+
+        <div class="container-fluid">
+            <img src="/logo/Gratifikasi.png" alt="" srcset="" width="400px" style="margin-top: -100px;">
+        </div>
+
+        <style>
+            .tiket {
+                position: relative;
+                width: 200px;
+                height: 160px;
+                background: #d33238;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                -webkit-mask-image: radial-gradient(circle at 23px 50px, transparent 23px, red 23.5px), radial-gradient(closest-side circle at 50%, red 99%, transparent 100%);
+                -webkit-mask-size: 100%, 12px 4px;
+                -webkit-mask-repeat: repeat, repeat-x;
+                -webkit-mask-position: -23px, 50% 50px;
+                -webkit-mask-composite: source-out;
+                mask-composite: subtract;
+                overflow: hidden;
+            }
+        </style>
+
+        <script>
+            async function fetchRssTitles() {
+                try {
+                    const response = await fetch('/api/rss');
+                    const data = await response.json();
+                    const titles = data.titles.join('|');
+
+                    const marqueeElement = document.getElementById('rss-titles');
+                    marqueeElement.textContent = titles || 'Tidak ada';
+                } catch (error) {
+                    console.error('Error fetching RSS titles:', error);
+                }
+            }
+
+            fetchRssTitles();
+
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let seconds = now.getSeconds();
+
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                const clock = document.getElementById('jam');
+                clock.textContent = `${hours}:${minutes}:${seconds} WITA`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+        </script>
+
+        <script src="https://cdn.notifku.my.id/lime/theme/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
+        <script src="https://cdn.notifku.my.id/lime/theme/assets/plugins/bootstrap/popper.min.js"></script>
+        <script src="https://cdn.notifku.my.id/lime/theme/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.notifku.my.id/lime/theme/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="https://cdn.notifku.my.id/lime/theme/assets/js/lime.min.js"></script>
+        <footer class="footer">
+            <marquee id="rss-titles" behavior="scroll" direction="left">
+                Mengambil berita...
+            </marquee>
+            <div class="ptsp-go"><span id="jam">00:00:00</span></div>
+
+        </footer>
+</body>
+
+</html>

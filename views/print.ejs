@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Print</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @page {
+            size: 58mm 100mm
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .head-address {
+            font-size: 14px;
+        }
+
+        .head-mobile {
+            font-size: 12px;
+        }
+
+        .head-time {
+            font-size: 13px;
+        }
+
+        footer {
+            margin-top: 10px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .details {
+            font-size: 12px;
+            text-align: left;
+        }
+
+        #print-btn {
+            display: none;
+        }
+
+
+        body.receipt .sheet {
+            width: 58mm;
+            height: 100mm
+        }
+
+        /* change height as you like */
+        @media print {
+            body.receipt {
+                width: 58mm
+            }
+        }
+
+        /* this line is needed for fixing Chrome's bug */
+    </style>
+</head>
+
+<body class="receipt">
+    <section class="sheet padding-10mm ">
+        <header class="text-center">
+
+            <!-- <div class="image">
+            <img src="/images/logo.jpg" alt="" class="w-50">
+        </div> -->
+            <div class="header-info">
+                <h5>Rony Medicine Corner</h5>
+                <span class="head-address">Khoarpar, Sherpur Town, Sherpur.</span>
+                <span class="head-mobile fw-bold">Mobile: 01794588580 | 01614588580</span>
+                <span class="head-time ">Time: 02 March, 2022 | 6:35 PM</span><br>
+                <span class="text-center">---------------------------------</span>
+            </div>
+        </header>
+        <main>
+            <div class="content">
+                <!-- <span class="fw-bold">TOKEN(S)</span><br> -->
+
+
+                <span class="details" id="details">
+
+                    <!--  BPDB Prepaid Token Purchase Successful<br>
+        Meter No: 010110361698<br>
+        Customer Name: MUHAMMAD ALI<br>
+        Sequence: 107<br>
+        Energy Cost: 192.37 Tk <br>
+        VAT: 9.52 Tk <br>
+        Meter Rent 1P: 0.00 Tk <br>
+        Demand Charge: 0.00 Tk <br>
+        Rebate: -1.89 Tk <br>
+        Arrear Amount: 0.00 Tk <br>
+        Vending Amount: 200.00 Tk <br>
+        Token(s)<br>
+        1533-3852-3061-4027-3051<br>
+        Service Charge: 5.00 Tk <br>
+        Total Amount: 205.00 Tk <br>
+        RTrx ID: 20220227014166 <br>
+        From: 8801848589753 -->
+                </span>
+                <!-- <h6>1533-3852-3061-4027-3051</h6> -->
+            </div>
+
+        </main>
+        <footer>
+            Developed By: Abed Hossain Shadin <br>
+            Contact: 01794588580
+        </footer>
+        <div id="print-btn" class="text-center mt-5">
+            <button onclick="printThis()">Print</button>
+        </div>
+
+
+        <div id="field" class="text-center mt-2">
+
+
+
+            <textarea type="text" id="token-field"></textarea><br>
+            <button onclick="showToken()">Post</button>
+        </div>
+    </section>
+
+
+    <script>
+        const showToken = () => {
+            const value = document.getElementById('token-field').value;
+            const post = document.getElementById('details');
+            post.innerText = value;
+            document.getElementById('field').style.display = 'none';
+            document.getElementById('print-btn').style.display = 'block';
+        }
+
+        const printThis = () => {
+            document.getElementById('print-btn').style.display = 'none';
+            window.print();
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

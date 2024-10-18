@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrian PTSP</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('updateQueue', function (data) {
+            location.reload();
+        });
+        socket.on('newQueue', function (data) {
+            location.reload();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Antrian PTSP</h2>
+        <div class="current-queue mt-4">
+            <h4>NOMOR ANTRIAN SEKARANG:
+                <% if (lastCalled) { %>
+                    <strong>
+                        <%= lastCalled.service_queue_number %>
+                    </strong>
+                    <img src="<%= lastCalled.photo %>" height="50px" alt="" srcset="">
+                    <% } else { %>
+                        <strong>Tidak ada antrian yang sedang dipanggil.</strong>
+                        <% } %>
+            </h4>
+        </div>
+
+        <hr>
+
+        <div class="queue-section">
+            <% const services=['umum', 'hukum' , 'pidana' , 'perdata' , 'informasi' ]; %>
+                <% services.forEach(function(service) { %>
+                    <h3>
+                        <%= service.charAt(0).toUpperCase() + service.slice(1) %>
+                    </h3>
+                    <% const waitingQueue=queueByService[service] || []; %>
+                        <% if (waitingQueue.length> 0) { %>
+                            <div class="queue-item">
+                                <p>No Antrian: <strong>
+                                        <%= waitingQueue[0].service_queue_number %>
+                                    </strong></p>
+                                <p>Nama: <strong>
+                                        <%= waitingQueue[0].name %>
+                                    </strong></p>
+                            </div>
+                            <% } else { %>
+                                <p>Tidak ada antrian untuk layanan ini.</p>
+                                <% } %>
+                                    <% }); %>
+        </div>
+
+        <div class="current-calling mt-4">
+            <h4>Antrian Saat Ini</h4>
+            <% let currentCalling=null; %>
+                <% Object.keys(queueByService).forEach(function(service) { %>
+                    <% queueByService[service].forEach(function(item) { %>
+                        <% if (item.status==='calling' ) { %>
+                            <% currentCalling=item; %>
+                                <% } %>
+                                    <% }); %>
+                                        <% }); %>
+                                            <% if (currentCalling) { %>
+                                                <p>No Antrian: <strong>
+                                                        <%= currentCalling.service_queue_number %>
+                                                    </strong></p>
+                                                <p>Nama: <strong>
+                                                        <%= currentCalling.name %>
+                                                    </strong></p>
+                                                <% } else { %>
+                                                    <p>Tidak ada antrian yang sedang dipanggil.</p>
+                                                    <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{
+  "umum": ["Surat masuk", "Surat keluar", "Penerimaan Tamu"],
+  "hukum": [
+    "Permohonan waarmaking surat-surat",
+    "Pembuatan surat keterangan tidak tersangkut perkara pidana dan perdata",
+    "Permohonan surat izin yang sudah ditandatangani Ketua Pengadilan untuk melaksanakan penelitian dan riset",
+    "Permohonan keterangan data perkara dan turunan putusan perkara yang telah berkekuatan hukum tetap",
+    "Permohonan pendaftaran surat kuasa",
+    "Permohonan surat kuasa insidentil",
+    "Layanan-layanan lain yang berhubungan dengan pelayanan kepaniteraan hukum"
+  ],
+  "pidana": [
+    "Pendaftaran perkara gugatan biasa",
+    "Pendaftaran perkara gugatan sederhana",
+    "Pendaftaran perkara perlawanan/bantahan",
+    "Pendaftaran verzet atas putusan verstek",
+    "Pendaftaran perkara permohonan secara manual",
+    "Pendaftaran permohonan banding, kasasi, dan peninjauan kembali",
+    "Memori/kontra memori banding, kasasi, dan peninjauan kembali",
+    "Permohonan sumpah atas ditemukannya bukti baru dalam peninjauan kembali",
+    "Permohonan pendaftaran Perjanjian Bersama",
+    "Permohonan pengembalian sisa panjar biaya perkara",
+    "Permohonan dan pengambilan salinan putusan",
+    "Pendaftaran permohonan eksekusi",
+    "Pendaftaran permohonan konsinyasi",
+    "Permohonan pengambilan uang hasil eksekusi dan uang konsinyasi",
+    "Permohonan pencabutan gugatan, permohonan, banding, kasasi, peninjauan kembali, dan eksekusi",
+    "Pendaftaran keberatan putusan arbitrase, KPPU, dan BPSK",
+    "Layanan-layanan lain yang berhubungan dengan proses dan informasi penyelesaian perkara perdata/kekhususan (10 perkara konsultasi)"
+  ],
+  "perdata": [
+    "Pendaftaran perkara gugatan biasa",
+    "Pendaftaran perkara gugatan sederhana",
+    "Pendaftaran perkara perlawanan/bantahan",
+    "Pendaftaran verzet atas putusan verstek",
+    "Pendaftaran perkara permohonan secara manual",
+    "Pendaftaran permohonan banding, kasasi, dan peninjauan kembali",
+    "Memori/kontra memori banding, kasasi, dan peninjauan kembali",
+    "Permohonan sumpah atas ditemukannya bukti baru dalam peninjauan kembali",
+    "Permohonan pendaftaran Perjanjian Bersama",
+    "Permohonan pengembalian sisa panjar biaya perkara",
+    "Permohonan dan pengambilan salinan putusan",
+    "Pendaftaran permohonan eksekusi",
+    "Pendaftaran permohonan konsinyasi",
+    "Permohonan pengambilan uang hasil eksekusi dan uang konsinyasi",
+    "Permohonan pencabutan gugatan, permohonan, banding, kasasi, peninjauan kembali, dan eksekusi",
+    "Pendaftaran keberatan putusan arbitrase, KPPU, dan BPSK",
+    "Layanan-layanan lain yang berhubungan dengan proses dan informasi penyelesaian perkara perdata/kekhususan"
+  ],
+  "informasi": [
+    "Permohonan dan pemberian informasi sesuai Surat Keputusan Ketua Mahkamah Agung RI Nomor 2-144 Tahun 2022",
+    "Memilah permohonan informasi baik secara manual maupun elektronik",
+    "Mendokumentasikan permohonan informasi dan keberatan atas permohonan informasi secara manual maupun elektronik",
+    "Meneruskan permohonan informasi kepada PPID pelaksana",
+    "Menginformasikan jadwal persidangan setiap hari kepada para pihak yang berkepentingan",
+    "Melaporkan layanan informasi"
+  ]
+}
