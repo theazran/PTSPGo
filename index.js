@@ -9,11 +9,15 @@ const googleTTS = require('@sefinek/google-tts-api');
 const fs = require("fs")
 const axios = require("axios")
 const { sendText, generateTicketUrl, sendWhatsAppMessage } = require('./lib/sendWA')
+const localtunnel = require('localtunnel');
 
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const PORT = 3000;
+const CUSTOM_SUBDOMAIN = `ptspgo`
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -775,8 +779,16 @@ app.get('/api/service-stats/:service', async (req, res) => {
 });
 
 
-const server = app.listen(3000, () => {
-    console.log('Berjalanmi di port 3000');
+const server = app.listen(PORT, async () => {
+    console.log(`jalanmi di http://localhost:${PORT}`);
+
+    try {
+        const tunnel = await localtunnel({ port: PORT, subdomain: CUSTOM_SUBDOMAIN });
+
+        console.log(`URL: ${tunnel.url}`);
+    } catch (err) {
+        console.error('Gagal menyambungkan ke LocalTunnel:', err);
+    }
 });
 
 // const io = socketIO(server);
