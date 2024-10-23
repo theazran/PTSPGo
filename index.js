@@ -32,27 +32,28 @@ function emitQueueUpdate(queue) {
 }
 
 const laptopCameraOptions = {
-    width: 1280,
-    height: 720,
-    quality: 100,
+    width: 640,
+    height: 480,
+    quality: 50,
     frames: 60,
     delay: 0,
     saveShots: true,
     output: "jpeg",
-    device: false,
+    //device: 0,
+    device: '1',
     callbackReturn: "location",
     verbose: false
 };
 
 const usbCameraOptions = {
-    width: 1280,
-    height: 720,
-    quality: 100,
+    width: 640,
+    height: 480,
+    quality: 50,
     frames: 60,
     delay: 0,
     saveShots: true,
     output: "jpeg",
-    device: 2,
+    device: '1',
     //device: false,
     callbackReturn: "location",
     verbose: false
@@ -295,19 +296,19 @@ app.post('/take-queue', (req, res) => {
                         }
 
                         const message = `Halo kak ${newQueue.name}, Nomor antrian Anda adalah *${newQueue.service_queue_number}*.\nHarap sabar menunggu.\n\n\n\`Bantu Kami Mewujudkan Zona Integritas, Dengan Tidak Memberikan Imbalan Dalam Bentuk Apapun Atas Pelayanan Yang Kami Berikan.\``;
-                        // sendMessage(newQueue.whatsapp, message);
+                        //sendMessage(newQueue.whatsapp, message);
                         const queueNumber = newQueue.service_queue_number;
                         const name = newQueue.name;
                         const date = today;
                         const service = getServiceNameById(newQueue.service_id).toUpperCase()
                         const to = waa(newQueue.whatsapp) + '@s.whatsapp.net';
-                        const number = '55555'; //pengirimnya ini ges
+                        const number = '555'; //pengirimnya ini ges
                         console.log(to)
 
-                        // const imageUrl = generateTicketUrl(queueNumber, name, date, service);
-                        // sendWhatsAppMessage(number, to, imageUrl, message);
+                        const imageUrl = generateTicketUrl(queueNumber, name, date, service);
+                        sendWhatsAppMessage(number, to, imageUrl, message);
 
-                        axios.get(`http://192.168.5.159/antrian/pengunjung/pages/beranda/apiPrint.php`, {
+                        axios.get(`http://192.168.5.88/antrian/pengunjung/pages/beranda/apiPrint.php`, {
                             params: {
                                 nama: name,
                                 layanan: service,

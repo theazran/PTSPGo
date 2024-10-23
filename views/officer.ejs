@@ -70,9 +70,7 @@
                                         <a href="" class="btn btn-warning m-t-xs"><i
                                                 class="fa-solid fa-arrows-rotate"></i>
                                             Refresh</a>
-                                        <button type="button" class="m-t-xs btn btn-danger">
-                                            <span id="dynamic-alert"></span>
-                                        </button>
+                                        <a id="dynamic-link" href="#" class="m-t-xs btn btn-danger"></a>
                                     </div>
                                     <div class="upgrade-image  col-md-6"></div>
                                 </div>
@@ -277,10 +275,11 @@
                 document.addEventListener('DOMContentLoaded', function () {
                     const currentURL = window.location.pathname;
 
-                    const service = currentURL.split('/').pop().toUpperCase();
+                    const service = currentURL.split('/').pop();
 
-                    const alertDiv = document.getElementById('dynamic-alert');
-                    alertDiv.innerText = `${service}`
+                    const link = document.getElementById('dynamic-link');
+                    link.href = `https://slides.pn-bulukumba.go.id/admin/${service}`;
+                    link.innerText = `SLIDES ${service}`;
                 }); 
             </script>
 
